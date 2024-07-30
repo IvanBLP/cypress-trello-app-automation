@@ -1,0 +1,19 @@
+{
+  "name": "cypress-ts-trello_app_automation",
+  "version": "1.0.0",
+  "description": "Test automation project using Cypress and Typescript for UI and API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^13.8.1",
+    "cypress-plugin-xhr-toggle": "^1.2.1"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "typescript": "^5.4.5"
+  }
+}
