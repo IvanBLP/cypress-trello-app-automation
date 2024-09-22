@@ -18,6 +18,7 @@ import './commands'
 import './commands/addBoard'
 import './commands/deleteBoard'
 import './commands/addList'
+import './commands/createAccount'
 import 'cypress-plugin-xhr-toggle'
 
 // Alternatively you can use CommonJS syntax:
