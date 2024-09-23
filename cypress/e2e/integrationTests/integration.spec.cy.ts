@@ -30,7 +30,9 @@ describe('IntegrationTests', () => {
 		newBoard.verifyLastListTitle('Second List Tittle')
 	})
 
-	it.only('Creates Private Card with Img', () => {
+	it('Creates Private Card with Img', () => {
+		const newImgPath = 'cypress/support/files/differentCat.jpeg'
+		cy.task('renameFile', { oldPath: 'cypress/support/files/cat.jpeg', newPath: newImgPath })
 		const accountInfo = {
 			email: 'first@account.com',
 			password: 'test1',
@@ -45,35 +47,14 @@ describe('IntegrationTests', () => {
 		const board = newHome.createFirstBoard('First Private Board')
 		board.addList('First List')
 		board.addCard('First Card')
+		const cardDetail = board.openCard('First Card')
+		cardDetail.verifyCardModalVisibility()
+		cardDetail.uploadImage(newImgPath)
+		cardDetail.verifyToastVisibility()
+		cardDetail.verifyUploadedImageVisibility()
+		cy.task('renameFile', { oldPath: newImgPath, newPath: 'cypress/support/files/cat.jpeg' })
 	})
 	beforeEach(() => {
 		cy.request('POST', 'http://localhost:3000/api/reset')
 	})
 })
-
-describe.skip('Card actions', () => {
-
-	it('Create Card', () => {
-		//TO DOs:
-		//1. cannot enforce type of oldPath and newPath here but cypress catches the error`\_(o.O)_/´
-		//2. detemine what happens if oldPath is not there, currently test throws error 
-		cy.task('renameFile', { oldPath: 'cypress/support/files/cat.jpeg', newPath: 'cypress/support/files/differentCat.jpeg' })
-		cy.addBoard({ name: 'New Board' })
-		cy.addList({ boardId: 1, name: 'firstList', order: 0 })
-		// board.visit(1)
-		// board.addCard('firstCardName')
-		// card.elements.modal().should('be.visible')
-		// card.elements.imgImput().selectFile('cypress/support/files/differentCat.jpeg', { force: true })
-		// card.elements.notificationToast().should('be.visible')
-	})
-	//it('',()=>{})
-	afterEach(() => {
-		//cy.request('POST', 'http://localhost:3000/api/reset')
-		//cy.deleteBoard(1)
-	})
-})
-
-
-// describe('Login/signup', () => {
-
-// })

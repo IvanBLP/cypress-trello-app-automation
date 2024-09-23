@@ -1,5 +1,4 @@
 Feature: Card Actions
-	@skip
 	Scenario: Creating new card
 		Given the user created a board
 		And the user created a list

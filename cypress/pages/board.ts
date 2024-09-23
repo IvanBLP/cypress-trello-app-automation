@@ -15,7 +15,7 @@ export class Board extends Page {
 		listTitle: () => cy.get('[data-cy="list-name"]'),
 		newCardInput: () => cy.get('[data-cy="new-card-input"]'),
 		submitNewCard: () => cy.contains('Add card'),
-		card: (cardName: string) => cy.get('[data-cy="card"]').filter(`:contains("${cardName}")`)
+		cardByName: (cardName: string) => cy.get('[data-cy="card"]').filter(`:contains("${cardName}")`)
 	}
 	editName(newName: string) {
 		this.elements.boardTitleInput().click().type(newName).blur()
@@ -39,7 +39,7 @@ export class Board extends Page {
 		this.elements.submitNewCard().click()
 	}
 	openCard(cardName: string): CardDetail {
-		this.elements.card(cardName).click();
+		this.elements.cardByName(cardName).click();
 		return new CardDetail()
 	}
 	public verifyBoardTitle(title: string) {
